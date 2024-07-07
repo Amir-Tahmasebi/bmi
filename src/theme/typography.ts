@@ -10,8 +10,11 @@ export function pxToRem(value: number) {
   return `${value / 16}rem`;
 }
 
-export function responsiveFontSizes({ sm, md, lg }: { sm: number; md: number; lg: number }) {
+export function responsiveFontSizes({ xs, sm, md, lg }: { xs?: number; sm: number; md: number; lg: number }) {
   return {
+    '@media (max-width:600px)': {
+      fontSize: pxToRem(xs || sm),
+    },
     '@media (min-width:600px)': {
       fontSize: pxToRem(sm),
     },
@@ -73,13 +76,13 @@ export const typography = {
     fontWeight: 700,
     lineHeight: 1.5,
     fontSize: pxToRem(24),
-    ...responsiveFontSizes({ sm: 26, md: 30, lg: 32 }),
+    ...responsiveFontSizes({ xs: 24, sm: 26, md: 30, lg: 32 }),
   },
   h4: {
     fontWeight: 700,
     lineHeight: 1.5,
     fontSize: pxToRem(20),
-    ...responsiveFontSizes({ sm: 20, md: 24, lg: 24 }),
+    ...responsiveFontSizes({ xs:16, sm: 20, md: 24, lg: 24 }),
   },
   h5: {
     fontWeight: 700,
@@ -91,7 +94,7 @@ export const typography = {
     fontWeight: 700,
     lineHeight: 28 / 18,
     fontSize: pxToRem(17),
-    ...responsiveFontSizes({ sm: 18, md: 18, lg: 18 }),
+    ...responsiveFontSizes({ xs:16, sm: 18, md: 18, lg: 18 }),
   },
   subtitle1: {
     fontWeight: 600,
